@@ -1,0 +1,44 @@
+//======================================// Colors
+@base: #65B5CA;
+@baseHover: #F8F8FF;
+//======================================// Colors End
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 600;
+}
+
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: saturate(@base, 5%);
+}
+
+header nav ul li {
+  float: left;
+  a:hover {
+    background-color: @baseHover;
+  }
+}
+
+header nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+section.main {
+  margin-top: 48px;
+}
+
+div.main-logo {
+  height: 491px;
+  width: 307px;
+  background: url("../images/main-logo.jpg");
+}
