@@ -22,6 +22,7 @@ header nav ul li {
   float: left;
   a:hover {
     background-color: @baseHover;
+    text-decoration: none;
   }
 }
 
@@ -31,15 +32,56 @@ header nav ul li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: all 1000ms;
+}
+
+body {
+  margin: 0;
 }
 
 section.main {
   margin-top: 48px;
+  float: left;
+  max-width: 66%;
+}
+
+section.helper{
+  margin-top: 48px;
+  float: right;
+  max-width: 33%;
+}
+
+section.principal {
+  margin: 48px auto;
+  max-width: 100%;
+  clear: both;
 }
 
 div.main-logo {
   height: 491px;
   width: 307px;
-  margin: 50px auto;
   background: url("../images/main-logo.jpg");
 }
+
+.container-fluid {
+  width: 100%;
+}
+
+//==========================================================//
+//LOGO STYLE
+//==========================================================//
+.container-logo {
+  display: inline-block;
+  font-family: florsans-light;
+  margin-top: 50px;
+}
+
+.logo-main-name {
+  font-size: 5.5rem;
+}
+
+.logo-main-name-bold {
+  font-size: 5.5rem;
+  font-family: florsans-bold;
+}
+
