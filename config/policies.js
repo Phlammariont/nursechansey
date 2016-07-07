@@ -26,7 +26,20 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': false,
+
+  UserController: {
+    '*': 'isAuthenticated'
+  },
+
+  DashboardController: {
+    '*': 'isAuthenticated'
+  },
+
+  AuthController: {
+    login: true,
+    logout: true
+  },
 
   'PostController': {
     '*': 'isAuthenticated'

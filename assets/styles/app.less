@@ -1,9 +1,46 @@
 //======================================// Colors
 @base: #65B5CA;
 @baseHover: #F8F8FF;
-//======================================// Colors End
+@base50: #E0F7FA;
+@base100: #B2EBF2;
+@base200: #80DEEA;
+@base300: #4DD0E1;
+@base400: #26C6DA;
+@base500: #00BCD4;
+@base600: #00ACC1;
+@base700: #0097A7;
+@base800: #00838F;
+@base900: #006064;
+//======================================// Layout -- Colors End
+@logoWidth: 307px;
+//======================================// Box-Shadow Level -- Layout End
+@BS-first-level: 0px 3px 3px 0px rgba(0,0,0,0.5);
+@BS-second-level: 0px 5px 5px 0px rgba(0,0,0,0.5);
+//======================================// Box-Shadow Level End
 
-header {
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: florencesans;
+}
+
+header.np-main-header {
+  background-color: #E0F7FA;
+  width: 100%;
+  height: 6rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+header.np-main-header:hover {
+  //height: 5rem;
+}
+
+header.app-header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -16,6 +53,7 @@ header nav ul {
   padding: 0;
   overflow: hidden;
   background: saturate(@base, 5%);
+  box-shadow: @BS-first-level;
 }
 
 header nav ul li {
@@ -35,21 +73,24 @@ header nav ul li a {
   transition: all 1000ms;
 }
 
-body {
-  margin: 0;
-  font-family: florencesans;
-}
-
 section.main {
   margin-top: 48px;
   float: left;
   max-width: 66%;
 }
 
+section.main.strict {
+  width: 70%;
+}
+
 section.helper{
   margin-top: 48px;
   float: right;
-  max-width: 33%;
+  max-width: 30%;
+}
+
+section.helper.strict{
+  width: 30%;
 }
 
 section.principal {
@@ -58,35 +99,150 @@ section.principal {
   clear: both;
 }
 
-div.main-logo {
-  height: 280px;
-  width: 307px;
-  background: url("../images/main-logo.jpg");
-}
-
 .container-fluid {
   width: 100%;
-}
-
-.container-fit {
-  
 }
 
 .pull-right {
     float: right;
 }
 
+.show-grid {
+  margin: 15px 0px;
+}
+
+.show-grid-extra-large {
+  margin: 50px 0px;
+}
+
+.row-fluid {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.row-fluid.np-crud-row {
+  border: 1px solid @base50;
+  overflow: auto;
+}
+
+[class|="col-md"] {
+  float: left;
+}
+
+.generate-columns(12);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .col-md-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+input.np-input {
+  width: 90%;
+  height: 2rem;
+  margin: 0px 5%;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid black;
+  color: black;
+  text-align: center;
+  font-family: florsans-bold;
+  transition: all 200ms;
+}
+
+input.np-input:focus {
+  border: none;
+  border-bottom: 1px solid @base;
+  outline: none;
+}
+
+input.np-input.input-medium {
+  width: 10rem;
+  height: 1.8rem;
+  margin: 0px 1rem;
+}
+
+button.np-button {
+  width: 90%;
+  height: 2rem;
+  margin: 0px 5%;
+  border: none;
+  border-radius: 2px;
+  font-family: florsans-bold;
+  box-shadow: @BS-first-level;
+}
+
+.np-button.input-medium {
+  width: 10rem;
+  height: 2rem;
+  margin: 0px 1rem;
+}
+
+.button-submit {
+  background-color: @base;
+  color: white;
+}
+
+.button-new {
+  background-color: @base900;
+  color: white;
+}
+
+span.section-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.text-right{
+  text-align: right;
+}
+
+//==========================================================//
+//Log In
+//==========================================================//
+.log-in-container {
+  display: inline-block;
+  background-color: RGBA(150,150,150,0.5);
+  border-radius: 1rem;
+  box-shadow: @BS-first-level;
+  margin-top: 5rem;
+}
+.main-container.log-in-main-container {
+  height: 100vh;
+  background: url("../images/log-in/np-log-in-calendar.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.is-hide {
+  display: none;
+}
+
 //==========================================================//
 //LOGO STYLE
 //==========================================================//
+
+.container-fit-logo {
+  width: @logoWidth;
+  margin: 0 auto;
+}
+
+div.main-logo {
+  height: 280px;
+  width: @logoWidth;
+  background: url("../images/main-logo.jpg");
+}
+
 .container-logo {
   display: inline-block;
-  margin-top: 50px;
+  margin-top: 35%;
 }
 
 .logo-main-name {
   font-size: 4.7rem;
   margin: 0px 15px;
+  line-height: 40px;
 }
 
 .logo-main-name-bold {
@@ -102,11 +258,100 @@ div.main-logo {
 }
 
 .logo-week-days {
-    width: 307px;
+    width: @logoWidth;
 }
 
 span.logo-week-days {
   letter-spacing: 25px;
   margin: 0px 20px;
   font-size: 1.5rem;
+}
+
+//==========================================================//
+// Dashboard
+//==========================================================//
+
+//==========================================================//
+// App Navigation
+//==========================================================//
+
+nav.app-navigation {
+  width: 80%;
+  float: right;
+}
+
+nav.app-navigation ul {
+  width: 100%;
+  margin: 10px 0;
+  padding: 0;
+}
+
+nav.app-navigation ul li {
+  float: right;
+  width: 100%;
+  display: block;
+  background: @base900;
+  margin-bottom: 0.5rem;
+  box-shadow: @BS-first-level;
+  transition: margin-bottom 0ms, width 150ms, height 150ms, box-shadow 150ms;
+}
+
+nav.app-navigation ul li a {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  line-height: 3em;
+}
+
+nav.app-navigation ul li:hover {
+  box-shadow: @BS-second-level;
+  width: 100.5%;
+  height: 3.2rem;
+  margin-bottom: 0.3rem;
+}
+
+//==========================================================//
+// User Section
+//==========================================================//
+
+.user-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: auto;
+  &.status-active {
+    background-color: green;
+  }
+  &.status-inactive {
+    background-color: gray;
+  }
+}
+
+.user-status {
+  margin: 10px auto;
+}
+
+span.user-title {
+    color: #abadad;
+    font-size: 0.8em;
+}
+
+.user-services {
+    margin-top: 1%;
+}
+
+span.edit.edit-user, span.delete.delete-user {
+  font-size: 2em;
+}
+
+//==========================================================//
+// Crud section
+//==========================================================//
+
+.crud-column-title {
+  font-size: 0.8em;
+  color: gray
 }

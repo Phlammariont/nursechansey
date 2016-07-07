@@ -45,11 +45,19 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-    
-  'get /dashboard/main': { 
-      view: 'dashboard/main'
+
+  'get /user/admin': {
+      controller: 'User',
+      action: 'admin',
+      layout: 'imports/app-layout'
   },
-    
+
+  'get /dashboard/main': {
+      controller: 'Dashboard',
+      action: 'main',
+      layout: 'imports/app-layout'
+  },
+
   'get /log-in': {view: 'log-in'},
   'post /login': 'AuthController.login',
 

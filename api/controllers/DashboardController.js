@@ -7,4 +7,10 @@
 */
 module.exports = {
 
+  main: function ( req, res ) {
+    res.view('dashboard/main', {
+      layout: 'imports/app-layout',
+      user: req.session.user
+    });
+  }
 };

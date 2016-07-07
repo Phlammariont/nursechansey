@@ -9,6 +9,21 @@ var bcrypt = require('bcryptjs');
 
 module.exports = {
     attributes: {
+        status: {
+          type: 'boolean',
+          required: false,
+          unique: false
+        },
+        title: {
+          type: 'string',
+          required: true,
+          unique: false
+        },
+        name: {
+          type:'string',
+          required: true,
+          unique: false
+        },
         email: {
             type: 'email',
             required: true,
