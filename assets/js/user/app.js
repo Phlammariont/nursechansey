@@ -1,38 +1,45 @@
-var app = angular.module('user', []);
+'use strict';
+var app = angular.module('user', ['ngRoute'])
+  .config(['$routeProvider',function ($routeProvider) {
 
-app.controller('userController', function ($scope){
-  $scope.showAddUserClass = "is-hide";
-  $scope.showAddUser = function () {
-    $scope.showAddUserClass = "";
-  }
-  $scope.titles = [
-    {id:0,name:"Enfermera Jefe"},
-    {id:1,name:"Enfermera Auxiliar"}
-  ]
-  $scope.users =[
-    {
-      name:'Leon Rueda',
-      title:'Enfermero Jefe SSr',
-      status: true,
-      services: ['urgencias', 'cuidados intensivos']
-    },
-    {
-      name:'Irina Rueda',
-      title:'Enfermera Jefe SSr',
-      status: true,
-      services: ['urgencias', 'cuidados intensivos']
-    },
-    {
-      name:'Leon Rueda',
-      title:'Enfermero Jefe',
-      status: true,
-      services: ['urgencias', 'cuidados intensivos']
-    },
-    {
-      name:'Irina Rueda',
-      title:'Enfermera Auxiliar',
-      status: true,
-      services: ['urgencias', 'cuidados intensivos']
+    $routeProvider
+      .when('/views/directive/user/new-user.html', {
+        templateUrl: '/views/directive/user/new-user.html'
+      })
+  }]);
+
+angular.module('user')
+  .controller('userController', function ($scope, UserService, RoleService, BuildingServiceService) {
+
+    RoleService.init(function (titles) {
+      $scope.titles = titles
+    });
+    BuildingServiceService.init(function (services) {
+      $scope.services = services;
+    });
+
+    $scope.showAddUserClass = "is-hide";//is-hide
+    $scope.showAddUser = showAddUser;
+    $scope.getTitle = RoleService.getTitle;
+    $scope.getServices = BuildingServiceService.getServices;
+    $scope.edit = edit;
+    $scope.delete = deleteUser;
+    $scope.model = UserService.model;
+
+    function edit ( user ) {
+      $scope.newUser = user;
+      showAddUser();
     }
-  ];
+
+    function deleteUser( user ) {
+      UserService.deleteUser( user ).then(function (response) {
+        UserService.init();
+      });
+    }
+
+    function showAddUser() {
+      $scope.showAddUserClass = "";
+    }
+
+    UserService.init();
 });

@@ -9,7 +9,13 @@ var bcrypt = require('bcryptjs');
 
 module.exports = {
     attributes: {
-        status: {
+        id: {
+          type: 'integer',
+          autoIncrement: true,
+          primaryKey: true,
+          unique: true
+        },
+        active: {
           type: 'boolean',
           required: false,
           unique: false
@@ -33,6 +39,11 @@ module.exports = {
             type: 'string',
             minLength: 6,
             required: true
+        },
+        services: {
+          type: 'array',
+          minLength: 1,
+          required: false
         },
         toJSON: function() {
             var obj = this.toObject();

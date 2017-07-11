@@ -1,0 +1,39 @@
+.np-select {
+  .selected {
+    margin: 0 5%;
+    .selected-item {
+      padding: 5px;
+      margin-right: 5px;
+      float: left;
+      display: inline-block;
+      background-color: #b1eef7;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      font-size: 0.75rem;
+      .delete-selection {
+        cursor: pointer;
+        &:hover {
+          text-shadow: 1px 1px #999999;
+        }
+      }
+    }
+  }
+
+  .twitter-typeahead {
+    width: 100%;
+    .np-input.np-input-select {
+      text-align: left;
+    }
+    .tt-menu.tt-open {
+      width: 100%;
+      .np-select-option {
+        width: 100%;
+        padding: 10px;
+        background-color: white;
+        &.tt-cursor {
+          background-color: #E0F7FA;
+        }
+      }
+    }
+  }
+}

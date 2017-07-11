@@ -1,0 +1,6 @@
+<div class="np-select">
+  <div class="selected">
+    <div class="selected-item" ng-repeat="item in selectedItems "><span class="delete-selection" ng-click="delete(item)">X </span><span>{{getService(item).name}}</span></div>
+  </div>
+  <input type="text" class="np-input text-input np-input-select" placeholder="{{Msgs('services')}}" id="txt-services" ng-model="value"/>
+</div>

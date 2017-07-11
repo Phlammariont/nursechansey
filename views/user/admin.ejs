@@ -15,59 +15,48 @@
       </div>
     </header>
     <div id="user-crud" class="np-crud is-hides">
-      <div class="row-fluid np-crud-row user-row" ng-repeat="user in users">
+      <div class="row-fluid np-crud-row user-row" ng-repeat="user in model.users track by user.id">
         <div class="col-md-1">
           <div class="user-status status-{{user.active ? 'active' : 'inactive'}}"></div>
         </div>
         <div class="col-md-5">
           <div class="row-fluid"><span class="user-name">{{user.name}}</span></div>
-          <div class="row-fluid"><span class="user-title">{{user.title}}</span></div>
+          <div class="row-fluid"><span class="user-title">{{getTitle( user.title )}}</span></div>
         </div>
         <div class="col-md-4">
           <div class="user-services">
-            <i class="material-icons" style="color: red">local_hospital</i>
-            <i class="material-icons"  style="color: grren">local_hospital</i>
-            <i class="material-icons" style="color: blue">local_hospital</i>
+            <i ng-repeat="service in getServices( user.services )" class="material-icons" style="color: {{service.color}}">local_hospital</i>
           </div>
         </div>
         <div class="col-md-1 text-right">
-          <span class="edit edit-user "><i class="material-icons">mode_edit</i></span>
+          <span class="edit edit-user" ng-click="edit(user)"><i class="material-icons">mode_edit</i></span>
         </div>
         <div class="col-md-1 text-right">
-          <span class="delete delete-user "><i class="material-icons">delete</i></span>
+          <span class="delete delete-user" ng-click="delete(user)"><i class="material-icons">delete</i></span>
         </div>
       </div>
     </div>
   </section>
   <section class="helper strict">
-    <div class="container-fluid" ng-class="showAddUserClass">
-      <form action="/user/create" id="form-add-user">
-        <div class="fluid-row">
-          <div class="col-md-12">
-            <input type="text" class="np-input" placeholder="<%= __('Name') %>">
-          </div>
-        </div>
-        <div class="fluid-row">
-          <div class="col-md-2 text-right">
-            <input id="cb-user-active" type="checkbox" class="np-input">
-          </div>
-          <div class="col-md-2 text-right">
-            <label for="cb-user-active"><%= __('Active') %></label>
-          </div>
-          <div class="col-md-8">
-            <select id="select-user-title">
-              <option ng-repeat="title in titles" value="{{title.id}}">{{title.name}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="fluid-row">
-          
-        </div>
-      </form>
-    </div>
+    <new-user-form new-user="newUser" titles="titles" services="services" ng-class="showAddUserClass"></new-user-form>
     <%- include ../imports/app-nav-bar.ejs %>
   </section>
 </main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+<script src="/js/dependencies/sails.io.js"></script>
+<script src="/js/dependencies/jquery.min.js"></script>
+<script src="/js/dependencies/bootstrap.min.js"></script>
+<script src="/js/dependencies/angular/angular.min.js"></script>
+<script src="/js/dependencies/angular/angular-route.min.js"></script>
+<script src="/js/dependencies/typeahead.jquery.js"></script>
+
+
 <script src="/js/user/app.js"></script>
+<script src="/js/user/user.service.js"></script>
+<script src="/js/role/role.service.js"></script>
+<script src="/js/building-service/building-service.service.js"></script>
+<script src="/js/module/user/new-user.js"></script>
+<script src="/js/module/general/nurse-api.service.js"></script>
+<script src="/js/module/general/messages.js"></script>
+<script src="/js/module/general/np-select.js"></script>

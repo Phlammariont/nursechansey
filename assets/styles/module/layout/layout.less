@@ -1,0 +1,91 @@
+section.main {
+  margin-top: 48px;
+  float: left;
+  max-width: 66%;
+}
+
+section.main.strict {
+  width: 70%;
+}
+
+section.helper{
+  margin-top: 48px;
+  float: right;
+  max-width: 30%;
+}
+
+section.helper.strict{
+  width: 30%;
+}
+
+section.principal {
+  margin: 48px auto;
+  max-width: 100%;
+  clear: both;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.show-grid {
+  .clearfix();
+  margin: 15px 0px;
+}
+
+.show-grid-extra-large {
+  margin: 50px 0px;
+}
+
+.row-fluid {
+  &:extend(.clearfix);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.row-fluid.np-crud-row {
+  border: 1px solid @base50;
+  overflow: auto;
+}
+
+[class|="col-md"] {
+  float: left;
+}
+
+.generate-columns(12);
+.generate-offsets(12);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .col-md-@{i} {
+    box-sizing: border-box;
+    width: (@i * 100% / @n);
+    padding: 0 2%;
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+.generate-offsets(@n, @i: 1) when (@i =< @n) {
+  .col-md-offset-@{i} {
+    margin-left: ((@i * 100% / @n) - 4%);
+  }
+  .generate-offsets(@n, (@i + 1));
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

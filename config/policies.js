@@ -32,6 +32,14 @@ module.exports.policies = {
     '*': true
   },
 
+  ServiceController: {
+    '*': 'isAuthenticated'
+  },
+
+  TitleController: {
+    '*': 'isAuthenticated'
+  },
+
   DashboardController: {
     '*': 'isAuthenticated'
   },

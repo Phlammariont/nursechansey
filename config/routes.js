@@ -46,6 +46,12 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  'get /service/admin': {
+    controller: 'Service',
+    action: 'admin',
+    layout: 'imports/app-layout'
+  },
+
   'get /user/admin': {
       controller: 'User',
       action: 'admin',
