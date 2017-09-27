@@ -1,16 +1,7 @@
 'use strict';
-var app = angular.module('user', ['ngRoute'])
-  .config(['$routeProvider',function ($routeProvider) {
 
-    $routeProvider
-      .when('/views/directive/user/new-user.html', {
-        templateUrl: '/views/directive/user/new-user.html'
-      })
-  }]);
 
-angular.module('user')
-  .controller('userController', function ($scope, UserService, RoleService, BuildingServiceService) {
-
+app.controller('UserController', function ($scope, UserService, RoleService, BuildingServiceService) {
     RoleService.init(function (titles) {
       $scope.titles = titles
     });

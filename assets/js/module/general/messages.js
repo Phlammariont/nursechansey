@@ -7,8 +7,7 @@
  * # MESSAGES
  * Service in the comafiApp.
  */
-angular.module('user')
-  .service('MESSAGES', function () {
+app.service('MESSAGES', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     function getkey(key) {

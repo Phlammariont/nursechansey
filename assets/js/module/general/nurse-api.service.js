@@ -7,8 +7,7 @@ const endpoint = {
   title: '/title',
   service: '/service'
 };
-angular.module('user')
-  .service('NurseApi', function ( $http ){
+app.service('NurseApi', function ( $http ){
 
     var Service = {
       saveUser: function( user ) {

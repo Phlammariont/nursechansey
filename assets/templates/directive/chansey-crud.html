@@ -1,0 +1,16 @@
+<section>
+  <chansey-crud-header domain="model.domain" length="model.list.length" show-new="showNew"/>
+  <div id="user-crud" class="np-crud is-hides">
+    <div class="row-fluid np-crud-row user-row" ng-repeat="item in model.list track by item.id">
+      <div ng-repeat="col in model.domain.attributes" class="col-md-{{col.weight}} {{col.hidden ? 'is-hide' : ''}}" >
+        <span ng-bind-html="!col.formatter ? item[col.index] : col.formatter(item[col.index]) | trusted"></span>
+      </div>
+      <div class="col-md-1 pull-right">
+        <span class="edit edit-item" ng-click="edit(item)"><i class="material-icons">mode_edit</i></span>
+      </div>
+      <div class="col-md-1 text-right pull-right">
+        <span class="delete delete-item" ng-click="deleteItem(item)"><i class="material-icons">delete</i></span>
+      </div>
+    </div>
+  </div>
+</section>

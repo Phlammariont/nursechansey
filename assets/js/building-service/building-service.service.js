@@ -1,8 +1,7 @@
 /**
  * Created by pedro.rueda on 31/03/17.
  */
-angular.module('user')
-  .service('BuildingServiceService', function ( NurseApi, MESSAGES ){
+app.service('BuildingServiceService', function ( NurseApi, MESSAGES ){
 
     var Model = {
       services: []

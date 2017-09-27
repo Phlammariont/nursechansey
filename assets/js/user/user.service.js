@@ -1,8 +1,7 @@
 /**
  * Created by pedro.rueda on 30/03/17.
  */
-angular.module('user')
-  .service('UserService', function ( NurseApi ){
+app.service('UserService', function ( NurseApi ){
     var Model = {
       users: []
     };

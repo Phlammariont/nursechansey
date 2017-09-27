@@ -1,8 +1,7 @@
 /**
  * Created by pedro.rueda on 30/03/17.
  */
-angular.module('user')
-  .service('RoleService', function ( NurseApi, MESSAGES ){
+app.service('RoleService', function ( NurseApi, MESSAGES ){
 
     var Model = {
       titles: []

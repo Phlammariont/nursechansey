@@ -14,9 +14,9 @@ module.exports = {
     },
     id: {
       type: 'integer',
-      required: true,
-      unique: true,
-      primaryKey: true
+      autoIncrement: true,
+      primaryKey: true,
+      unique: true
     },
     color: {
       type: 'string',

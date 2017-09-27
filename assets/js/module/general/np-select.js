@@ -1,8 +1,7 @@
 /**
  * Created by pedro.rueda on 1/12/16.
  */
-angular.module('user')
-  .directive('npSelect', function ($timeout, BuildingServiceService) {
+app.directive('npSelect', function ($timeout, BuildingServiceService) {
     return {
       templateUrl: '/views/directive/general/np-select.html',
       restrict: 'E',
