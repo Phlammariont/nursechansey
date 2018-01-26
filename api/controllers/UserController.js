@@ -9,10 +9,10 @@ module.exports = {
 	admin: function ( req, res ) {
      res.view('user/admin', {
       layout: 'imports/app-layout',
-      user: {
-        name: 'leon rueda',
-        role: 'ADMIN'
-      }
+       user: {
+         name: req.user.name || user,
+         role: req.user.title === '1' ? 'ADMIN' : 'NoONE'
+       }
     });
   }
 };

@@ -36,8 +36,12 @@ module.exports.policies = {
     '*': 'isAuthenticated'
   },
 
-  TitleController: {
+  BuildingController: {
     '*': 'isAuthenticated'
+  },
+
+  TitleController: {
+    '*': true
   },
 
   DashboardController: {
