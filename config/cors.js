@@ -73,6 +73,9 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  // headers: 'content-type'
+
+  allRoutes: true,
+  origin: 'http://localhost:3000',
+  headers: 'x-requested-with,Content-Type'
 
 };
