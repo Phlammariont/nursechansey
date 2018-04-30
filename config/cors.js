@@ -64,7 +64,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  // methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+  methods: 'GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD', // 'GET, POST, PUT, DELETE, OPTIONS, HEAD'
 
   /***************************************************************************
   *                                                                          *
@@ -73,6 +73,9 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  // headers: 'content-type'
+
+  allRoutes: true,
+  origin: 'http://localhost:3000',
+  headers: 'x-requested-with,Content-Type'
 
 };

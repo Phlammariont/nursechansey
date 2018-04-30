@@ -21,7 +21,7 @@ module.exports = {
           unique: false
         },
         title: {
-          type: 'string',
+          type: 'array',
           required: true,
           unique: false
         },
