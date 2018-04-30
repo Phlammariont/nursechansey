@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "amqplib": "^0.5.2",
     "angular": "^1.6.1",
     "angular-resource": "^1.6.1",
     "angular-route": "^1.5.8",

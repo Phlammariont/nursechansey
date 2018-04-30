@@ -53,6 +53,10 @@ module.exports.policies = {
     logout: true
   },
 
+  PlannerController: {
+    '*': 'isAuthenticated'
+  },
+
   'PostController': {
     '*': 'isAuthenticated'
   }
