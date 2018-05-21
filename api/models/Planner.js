@@ -27,11 +27,11 @@ open.then(function(conn) {
 }).then(null, console.warn);
 
 module.exports = {
+  primaryKey: 'id',
   attributes: {
     id: {
-      type: 'integer',
+      type: 'number',
       autoIncrement: true,
-      primaryKey: true,
       unique: true
     },
     name: {

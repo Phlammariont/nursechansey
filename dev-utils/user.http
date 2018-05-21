@@ -1,0 +1,26 @@
+POST http://localhost:1337/user
+content-type: application/json
+
+{
+  "name": "Leon Rueda",
+  "email": "leon@nurse.com",
+  "password": "demo1234",
+  "title": {
+    "name": "Enfermera Jefe"
+  }
+}
+
+###
+
+PATCH http://localhost:1337/user/1
+content-type: application/json
+
+{
+  "services": [
+    {
+        "name": "Urgencias"
+    }
+  ]
+}
+
+###

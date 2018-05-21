@@ -8,49 +8,43 @@
 var bcrypt = require('bcryptjs');
 
 module.exports = {
-    attributes: {
-        id: {
-          type: 'integer',
-          autoIncrement: true,
-          primaryKey: true,
+  primaryKey: 'id',
+  attributes: {
+      id: {
+        type: 'number',
+        autoIncrement: true,
+        unique: true
+      },
+      active: {
+        type: 'boolean',
+        required: false,
+        unique: false
+      },
+      title: {
+        type: 'json',
+        required: true,
+        unique: false
+      },
+      name: {
+        type:'string',
+        required: true,
+        unique: false
+      },
+      email: {
+          type: 'string',
+          required: true,
           unique: true
-        },
-        active: {
-          type: 'boolean',
-          required: false,
-          unique: false
-        },
-        title: {
-          type: 'array',
-          required: true,
-          unique: false
-        },
-        name: {
-          type:'string',
-          required: true,
-          unique: false
-        },
-        email: {
-            type: 'email',
-            required: true,
-            unique: true
-        },
-        password: {
-            type: 'string',
-            minLength: 6,
-            required: true
-        },
-        services: {
-          type: 'array',
-          minLength: 1,
-          required: false
-        },
-        toJSON: function() {
-            var obj = this.toObject();
-            delete obj.password;
-            return obj;
-        }
-    },
+      },
+      password: {
+          type: 'string',
+          minLength: 6,
+          required: true
+      },
+      services: {
+        type: 'json',
+        required: false
+      }
+  },
     beforeCreate: function(user, cb) {
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(user.password, salt, function(err, hash) {
