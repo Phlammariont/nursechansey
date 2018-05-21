@@ -7,15 +7,15 @@
 
 module.exports = {
 
+  primaryKey: 'id',
   attributes: {
     name: {
       type: 'string',
       required: true
     },
     id: {
-      type: 'integer',
+      type: 'number',
       autoIncrement: true,
-      primaryKey: true,
       unique: true
     },
     color: {

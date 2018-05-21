@@ -42,11 +42,11 @@ const sendMessage = (planner) => {
 
 
 module.exports = {
+  primaryKey: 'id',
   attributes: {
     id: {
-      type: 'integer',
+      type: 'number',
       autoIncrement: true,
-      primaryKey: true,
       unique: true
     },
     name: {

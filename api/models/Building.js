@@ -6,11 +6,11 @@
  */
 
 module.exports = {
+  primaryKey: 'id',
   attributes: {
     id: {
-      type: 'integer',
+      type: 'number',
       autoIncrement: true,
-      primaryKey: true,
       unique: true
     },
     name: {
@@ -19,8 +19,7 @@ module.exports = {
       unique: true
     },
     services: {
-      type: 'array',
-      minLength: 1,
+      type: 'json',
       required: false
     }
   }
