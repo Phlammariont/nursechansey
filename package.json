@@ -26,15 +26,18 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.2.4",
     "include-all": "~0.1.6",
+    "moment": "^2.22.1",
     "passport": "~0.2.1",
     "passport-local": "~1.0.0",
+    "ramda": "^0.25.0",
     "rc": "1.0.1",
     "sails": "^0.12.14",
     "sails-disk": "~0.10.9"
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node $NODE_DEBUG_OPTION app.js",
+    "test": "jest"
   },
   "main": "app.js",
   "repository": {
@@ -42,5 +45,12 @@
     "url": "git://github.com/leon/nursechansey.git"
   },
   "author": "leon",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "supertest": "^3.1.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/jest/setup.js"
+  }
 }

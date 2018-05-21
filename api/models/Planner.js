@@ -5,26 +5,41 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-var setPlannerQueue = 'set-planner';
-var getPlannerQueue = 'get-planner';
+// const setPlannerQueue = 'set-planner';
+// const getPlannerQueue = 'get-planner';
+//
+// const url = process.env.CLOUDAMQP_URL || "amqp://localhost";
+// const open = require('amqplib').connect(url);
+//
+// // Consumer
+// open.then(function(conn) {
+//   var ok = conn.createChannel();
+//   ok = ok.then(function(ch) {
+//     ch.assertQueue(getPlannerQueue);
+//     ch.consume(getPlannerQueue, function(msg) {
+//       if (msg !== null) {
+//         console.log(msg.content.toString());
+//         ch.ack(msg);
+//       }
+//     });
+//   });
+//   return ok;
+// }).then(null, console.warn);
 
-var url = process.env.CLOUDAMQP_URL || "amqp://localhost";
-var open = require('amqplib').connect(url);
+const sendMessage = (planner) => {
+  // Publisher
+  //open.then(function(conn) {
+  //   let ok = conn.createChannel();
+  //   ok = ok.then(function(ch) {
+  //     ch.assertQueue(setPlannerQueue);
+  //     ch.sendToQueue(setPlannerQueue, new Buffer(JSON.stringify(planner)), {contentType: 'application/json'});
+  //   });
+  //   return ok;
+  // }).then(null, console.warn);
+  console.log("Sending New Planner: ", planner)
+}
 
-// Consumer
-open.then(function(conn) {
-  var ok = conn.createChannel();
-  ok = ok.then(function(ch) {
-    ch.assertQueue(getPlannerQueue);
-    ch.consume(getPlannerQueue, function(msg) {
-      if (msg !== null) {
-        console.log(msg.content.toString());
-        ch.ack(msg);
-      }
-    });
-  });
-  return ok;
-}).then(null, console.warn);
+
 
 module.exports = {
   attributes: {
@@ -38,20 +53,28 @@ module.exports = {
       type:'string',
       required: true,
       unique: false
+    },
+    building: {
+      type: 'json',
+      required: true,
+      unique: false
+    },
+    services: {
+      type: 'json',
+      required: true,
+    },
+    nurses: {
+      type: 'json',
+      required: true
+    },
+    timeLapse: {
+      type: 'json',
+      required: true
     }
   },
 
-  beforeCreate: function(planner, cb) {
-    // Publisher
-    open.then(function(conn) {
-      var ok = conn.createChannel();
-      ok = ok.then(function(ch) {
-        ch.assertQueue(setPlannerQueue);
-        ch.sendToQueue(setPlannerQueue, new Buffer("hola mundo!"));
-      });
-      return ok;
-    }).then(null, console.warn);
-    console.log("Sending New Planner: ", planner)
+  beforeCreate: async function(planner, cb) {
+    sendMessage(await PlannerService.getPlannerMessage(planner))
     cb()
   }
 };

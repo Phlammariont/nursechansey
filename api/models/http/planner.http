@@ -4,3 +4,67 @@
 # * 'gtrp' and 'gtr' create a GET request with or without query parameters;
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+POST http://localhost:1337/planner
+content-type: application/json
+
+{
+    "name": "First Planner",
+    "timeLapse": {
+      "startDate": "2018-05-02T03:01:30.000Z",
+      "endDate": "2018-06-01T03:01:30.000Z"
+    },
+    "building": {
+      "name": "Edificio Urgencias",
+      "services": [
+        {
+          "name": "Servicios de Urgencias",
+          "color": "red",
+          "createdAt": "2018-04-17T17:53:55.074Z",
+          "updatedAt": "2018-05-04T21:56:59.803Z",
+          "id": 2
+        }
+      ],
+      "createdAt": "2018-05-04T21:57:58.400Z",
+      "updatedAt": "2018-05-04T21:57:58.400Z",
+      "id": 48
+    },
+    "services": [
+      {
+        "name": "Servicios de Urgencias",
+        "color": "red",
+        "createdAt": "2018-04-17T17:53:55.074Z",
+        "updatedAt": "2018-05-04T21:56:59.803Z",
+        "id": 2
+      }
+    ],
+    "nurses": [
+      {
+        "active": true,
+        "title": {
+          "name": "Enfermera Jefe",
+          "createdAt": "2018-04-19T02:50:59.620Z",
+          "updatedAt": "2018-04-19T02:50:59.620Z",
+          "id": 1
+        },
+        "name": "Leon Rueda",
+        "email": "Leon@nurse.com",
+        "services": [
+          {
+            "name": "Servicios de Urgencias",
+            "color": "red",
+            "createdAt": "2018-04-17T17:53:55.074Z",
+            "updatedAt": "2018-05-04T21:56:59.803Z",
+            "id": 2
+          }
+        ],
+        "createdAt": "2018-05-04T21:17:09.049Z",
+        "updatedAt": "2018-05-11T02:27:57.927Z",
+        "id": 10
+      }
+    ]
+}
+
+###
+GET http://localhost:1337/planner
+
+###

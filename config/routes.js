@@ -75,6 +75,7 @@ module.exports.routes = {
 
   '/logout': 'AuthController.logout',
 
-  'get /signup': {view: 'signup'}
+  'get /signup': {view: 'signup'},
 
+  'get /clear-queue': 'PlannerController.clearQueue'
 };

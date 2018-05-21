@@ -54,6 +54,18 @@ module.exports.policies = {
   },
 
   PlannerController: {
+    '*': true
+  },
+
+  ShiftController: {
+    '*': 'isAuthenticated'
+  },
+
+  ShiftTypeController: {
+    '*': 'isAuthenticated'
+  },
+
+  ShiftAssignmentController: {
     '*': 'isAuthenticated'
   },
 
