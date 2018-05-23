@@ -25,7 +25,7 @@ beforeAll(done => {
 
 afterAll(sails.lower)
 
-beforeEach(async done => {
+afterEach(async done => {
   // Drops database between each test.  This works because we use
   // the memory database
   await Shift.destroy({})
@@ -34,5 +34,6 @@ beforeEach(async done => {
   await Building.destroy({})
   await Service.destroy({})
   await Planner.destroy({})
+  await Title.destroy({})
   done()
 });

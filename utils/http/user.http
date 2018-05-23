@@ -1,0 +1,43 @@
+GET http://localhost:1337/user
+
+###
+
+POST http://localhost:1337/user
+content-type: application/json
+
+{
+  "active": true,
+  "name": "Leon Rueda",
+  "email": "leon@chansey.com",
+  "password": "demo1234",
+  "title": {
+    "id": 1,
+    "name": "Enfermera Jefe"
+  },
+  "services": [{
+    "id": 1,
+    "name": "Urgencias"
+  }]
+}
+
+###
+
+PATCH http://localhost:1337/user/36
+content-type: application/json
+
+{
+  "active": true,
+  "services": [
+    {
+    "id": 1,
+        "name": "Urgencias",
+        "color": "red"
+    }
+  ]
+}
+
+###
+
+DELETE http://localhost:1337/user/37
+
+###

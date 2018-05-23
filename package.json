@@ -39,7 +39,8 @@
     "sails-disk": "^1.0.1",
     "sails-hook-grunt": "^1.0.8",
     "sails-hook-orm": "^2.0.1",
-    "sails-hook-sockets": "^1.5.2"
+    "sails-hook-sockets": "^1.5.2",
+    "sails-mongo": "^1.0.1"
   },
   "scripts": {
     "debug": "node debug app.js",
