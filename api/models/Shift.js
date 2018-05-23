@@ -6,12 +6,11 @@
  */
 
 module.exports = {
-
+  primaryKey: 'id',
   attributes: {
     id: {
-      type: 'integer',
+      type: 'number',
       autoIncrement: true,
-      primaryKey: true,
       unique: true
     },
     date: {
@@ -20,9 +19,10 @@ module.exports = {
       unique: false
     },
     service: {
+      type: 'json'
     },
     shiftType: {
-
+      type: 'json'
     }
   }
 };

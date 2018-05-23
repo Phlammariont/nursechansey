@@ -9,6 +9,9 @@ const daysOfWeek = {
   7: 'Sunday'
 }
 
+const formatDate = date => date.format('YYYY-MM-DD')
+
 module.exports = {
-  daysOfWeek
+  daysOfWeek,
+  formatDate
 }

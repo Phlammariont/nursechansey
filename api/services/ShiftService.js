@@ -1,13 +1,10 @@
 const moment = require('moment')
 const {mapObjectId} = require('../utils/ramda')
-const {daysOfWeek} = require('../utils/time')
+const {daysOfWeek, formatDate} = require('../utils/time')
 
-const {forEachObjIndexed, forEach, times} = require('ramda')
+const {map, times, propOr, prop, mapObjIndexed, values} = require('ramda')
 
 const getPlannerShifts = async planner => {
-  console.log("from shift service!!")
-
-
   try {
     const shiftAssignments = await getShiftAssignment(planner.services)
     return await createShiftsFromAssignments(shiftAssignments, planner.timeLapse)
@@ -24,42 +21,47 @@ const getShiftAssignment = async (services) => {
 }
 
 const createShiftsFromAssignments = async (shiftAssignments, timeLapse) => {
-
   let date = moment(timeLapse.startDate)
-
   let shifts = []
   while (date.isBefore(timeLapse.endDate)) {
-    forEach( async shiftAssignment => {
+    await Promise.all(map( async shiftAssignment => {
+      const qty = getAssignedShiftsQty(shiftAssignment.assignment, date.isoWeekday())
+      if (qty === 0) return
+
       const createdShifts = await processShiftAssignation({
-        date,
-        numberByType: getAssignedShifts(shiftAssignment.assignment, date.isoWeekday()),
+        date: formatDate(date),
+        numberByType: qty,
         serviceId: shiftAssignment.serviceId
       })
       shifts = [...shifts, ...createdShifts]
-    }, shiftAssignments)
+    }, shiftAssignments))
     date.add(1, 'days')
   }
   return shifts
 }
 
-const getAssignedShifts = (shiftAssignment, dayOfWeek) => {
-  return shiftAssignment[daysOfWeek[dayOfWeek]]
+const getAssignedShiftsQty = (shiftAssignment, dayOfWeek) => {
+  return propOr(0, prop(dayOfWeek, daysOfWeek), shiftAssignment)
 }
 
 const processShiftAssignation = async ({date, numberByType, serviceId}) => {
   let shifts = []
-  const service = await Service.find({
+  const service = await Service.findOne({
     'id': serviceId
   })
-  forEachObjIndexed(async (value, key) => {
-    const createdShifts = await createShifts({date, key, value, service})
-    return [...shifts, ...createdShifts]
-  }, numberByType)
+  await Promise.all(
+    values(
+      mapObjIndexed(async (value, key) => {
+        const createdShifts = await createShifts({date, type: {name: key}, service, number: value})
+        shifts = [...shifts, ...createdShifts]
+      }, numberByType)
+    )
+  )
   return shifts
 }
 
-const createShifts = async ({date, type, number = 1, service}) => {
-  return await times(async () => await createShift({date, shiftType: {name: type}, service}), number)
+const createShifts = async ({date, type, service, number = 1}) => {
+  return await Promise.all( times( async () => await createShift({date, shiftType: type, service}), number) )
 }
 
 const createShift = async ({date, shiftType, service}) => {
