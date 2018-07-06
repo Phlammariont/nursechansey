@@ -2,7 +2,7 @@ const moment = require('moment')
 const {mapObjectId} = require('../utils/ramda')
 const {daysOfWeek, formatDate} = require('../utils/time')
 
-const {map, times, propOr, prop, mapObjIndexed, values} = require('ramda')
+const {map, times, propOr, prop, mapObjIndexed, values, head} = require('ramda')
 
 const getPlannerShifts = async planner => {
   try {
@@ -52,7 +52,7 @@ const processShiftAssignation = async ({date, numberByType, serviceId}) => {
   await Promise.all(
     values(
       mapObjIndexed(async (value, key) => {
-        const createdShifts = await createShifts({date, type: {name: key}, service, number: value})
+        const createdShifts = await createShifts({date, type: {name: key, code: head(key).toUpperCase()}, service, number: value})
         shifts = [...shifts, ...createdShifts]
       }, numberByType)
     )

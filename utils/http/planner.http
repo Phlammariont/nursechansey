@@ -68,3 +68,177 @@ content-type: application/json
 GET http://localhost:1337/planner
 
 ###
+
+PATCH http://localhost:1337/planner/5b04eafba9200d0a6667953c
+content-type: application/json
+
+  {
+    "createdAt": "2018-05-23T04:15:55.227Z",
+    "updatedAt": "2018-05-23T04:15:55.227Z",
+    "id": "5b04eafba9200d0a6667953c",
+    "name": "First Planner",
+    "building": {
+      "createdAt": "2018-05-25T01:52:34.975Z",
+      "updatedAt": "2018-05-25T01:52:34.975Z",
+      "id": "5b076c62141ef8125a3f86ca",
+      "name": "Principal",
+      "services": [
+        {
+          "createdAt": "2018-05-23T04:11:55.542Z",
+          "updatedAt": "2018-05-23T04:11:55.542Z",
+          "name": "Urgencias",
+          "id": "5b04ea0ba9200d0a66679537",
+          "color": "red"
+        },
+        {
+          "createdAt": "2018-05-25T01:52:12.895Z",
+          "updatedAt": "2018-05-25T01:52:12.895Z",
+          "name": "Servicios Especiales",
+          "id": "5b076c4c141ef8125a3f86c9",
+          "color": "blue"
+        }
+      ]
+    },
+    "services": [
+      {
+        "createdAt": "2018-05-23T04:11:55.542Z",
+        "updatedAt": "2018-05-23T04:11:55.542Z",
+        "name": "Urgencias",
+        "id": "5b04ea0ba9200d0a66679537",
+        "color": "red"
+      },
+      {
+        "createdAt": "2018-05-25T01:52:12.895Z",
+        "updatedAt": "2018-05-25T01:52:12.895Z",
+        "name": "Servicios Especiales",
+        "id": "5b076c4c141ef8125a3f86c9",
+        "color": "blue"
+      }
+    ],
+    "nurses": [
+      {
+        "createdAt": "2018-05-25T01:53:41.031Z",
+        "updatedAt": "2018-05-25T01:53:41.031Z",
+        "id": "5b076ca5141ef8125a3f86cc",
+        "active": true,
+        "title": {
+          "createdAt": "2018-05-25T01:53:05.781Z",
+          "updatedAt": "2018-05-25T01:53:05.781Z",
+          "name": "Auxiliar Enf.",
+          "id": "5b076c81141ef8125a3f86cb"
+        },
+        "name": "Enfermera 1",
+        "email": "1@nurse.com",
+        "password": "$2a$10$HBhxWXDj1xK.k9e1lppTtOAJCAFyhyMmE8FjSUjxWSQBqfc0Lsgi.",
+        "services": [
+          {
+            "createdAt": "2018-05-23T04:11:55.542Z",
+            "updatedAt": "2018-05-23T04:11:55.542Z",
+            "name": "Urgencias",
+            "id": "5b04ea0ba9200d0a66679537",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "createdAt": "2018-05-29T03:03:59.705Z",
+        "updatedAt": "2018-05-29T03:03:59.705Z",
+        "id": "5b0cc3202827fd05ad0ae914",
+        "active": true,
+        "title": {
+          "createdAt": "2018-05-25T01:53:05.781Z",
+          "updatedAt": "2018-05-25T01:53:05.781Z",
+          "name": "Auxiliar Enf.",
+          "id": "5b076c81141ef8125a3f86cb"
+        },
+        "name": "Enfermera 2",
+        "email": "2@nurse.com",
+        "password": "$2a$10$gVgbt4ht1rBEfD1TgvXUEO69enZAA7oIW6.bmVkLYsfmW/DTaCV4m",
+        "services": [
+          {
+            "createdAt": "2018-05-23T04:11:55.542Z",
+            "updatedAt": "2018-05-23T04:11:55.542Z",
+            "name": "Urgencias",
+            "id": "5b04ea0ba9200d0a66679537",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "createdAt": "2018-05-29T03:04:57.019Z",
+        "updatedAt": "2018-05-29T03:04:57.019Z",
+        "id": "5b0cc3592827fd05ad0ae915",
+        "active": true,
+        "title": {
+          "createdAt": "2018-05-23T04:11:44.674Z",
+          "updatedAt": "2018-05-23T04:11:44.674Z",
+          "name": "Enfermera Jefe",
+          "id": "5b04ea00a9200d0a66679536"
+        },
+        "name": "Enfermera 3",
+        "email": "3@nurse.com",
+        "password": "$2a$10$G6.eSlKMld.Q3eXKdti09uLAnn8wTPUA2iRGCclJBwn/f0HVw7NPK",
+        "services": [
+          {
+            "createdAt": "2018-05-23T04:11:55.542Z",
+            "updatedAt": "2018-05-23T04:11:55.542Z",
+            "name": "Urgencias",
+            "id": "5b04ea0ba9200d0a66679537",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "createdAt": "2018-05-23T03:55:50.995Z",
+        "updatedAt": "2018-05-23T03:55:50.995Z",
+        "id": "5b04e64724e6e00a107a684f",
+        "active": true,
+        "title": {
+          "id": 1,
+          "name": "Enfermera Jefe"
+        },
+        "name": "Leon Chansey",
+        "email": "leon@chansey.com",
+        "password": "$2a$10$de0oX2qLWDgKShU8kaQoVOMrmGtkA0.g.qtl.nAS8swxes2RWs.mK",
+        "services": [
+          {
+            "createdAt": "2018-05-23T04:11:55.542Z",
+            "updatedAt": "2018-05-23T04:11:55.542Z",
+            "name": "Urgencias",
+            "id": "5b04ea0ba9200d0a66679537",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "createdAt": "2018-05-23T04:12:30.696Z",
+        "updatedAt": "2018-05-23T04:12:30.696Z",
+        "id": "5b04ea2ea9200d0a66679538",
+        "active": true,
+        "title": {
+          "createdAt": "2018-05-23T04:11:44.674Z",
+          "updatedAt": "2018-05-23T04:11:44.674Z",
+          "name": "Enfermera Jefe",
+          "id": "5b04ea00a9200d0a66679536"
+        },
+        "name": "Leon Nurse",
+        "email": "leon@nurse.com",
+        "password": "$2a$10$h6o5on3PAW3AxmmbZayOCeYIwKtmc0qg/zG0.uOhyC.MwTsmHeMPC",
+        "services": [
+          {
+            "createdAt": "2018-05-23T04:11:55.542Z",
+            "updatedAt": "2018-05-23T04:11:55.542Z",
+            "name": "Urgencias",
+            "id": "5b04ea0ba9200d0a66679537",
+            "color": "red"
+          }
+        ]
+      }
+    ],
+    "timeLapse": {
+      "startDate": "2018-05-02T03:15:22.000Z",
+      "endDate": "2018-05-08T03:15:22.000Z"
+    }
+  }
+
+###
