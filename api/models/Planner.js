@@ -37,14 +37,14 @@ module.exports = {
     }
   },
 
-  beforeCreate: async function(planner, cb) {
+  afterCreate: async function(planner, cb) {
     MessageService.init()
     const message = await PlannerService.getPlannerMessage(planner)
     MessageService.sendMessage(JSON.stringify(message))
     cb()
   },
 
-  beforeUpdate: async function (planner, cb) {
+  afterUpdate: async function (planner, cb) {
     MessageService.init()
     const message = await PlannerService.getPlannerMessage(planner)
     MessageService.sendMessage(message)

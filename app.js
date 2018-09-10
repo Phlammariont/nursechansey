@@ -18,6 +18,25 @@
  * `node app.js --silent --port=80 --prod`
  */
 
+const { exec, execSync } = require('child_process')
+
+
+const up = exec(`docker-compose up -d`, () => {
+  const logs = exec(`docker-compose logs -f db`)
+  logs.stdout.pipe(process.stdout)
+  logs.stderr.pipe(process.stderr)
+})
+
+up.stdout.pipe(process.stdout)
+up.stderr.pipe(process.stderr)
+
+process.on('SIGINT', () => {
+  console.log('Stopping... DB')
+  execSync(`docker-compose stop`)
+  process.exit()
+})
+
+
 // Ensure we're in the project directory, so relative paths work as expected
 // no matter where we actually lift from.
 process.chdir(__dirname);
