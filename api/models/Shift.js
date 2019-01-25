@@ -9,9 +9,12 @@ module.exports = {
   primaryKey: 'id',
   attributes: {
     id: {
-      type: 'number',
-      autoIncrement: true,
+      type: 'string',
       unique: true
+    },
+    plannerId: {
+      type:'string',
+      required: true
     },
     date: {
       type:'string',

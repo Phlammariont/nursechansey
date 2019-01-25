@@ -34,6 +34,10 @@ module.exports = {
     timeLapse: {
       type: 'json',
       required: true
+    },
+    nurseType: {
+      type: 'json',
+      required: true
     }
   },
 

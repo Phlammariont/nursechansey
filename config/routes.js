@@ -77,5 +77,7 @@ module.exports.routes = {
 
   'get /signup': {view: 'signup'},
 
-  'get /clear-queue': 'PlannerController.clearQueue'
+  'get /clear-queue': 'PlannerController.clearQueue',
+
+  'get /shift/by-planner/:plannerId': 'ShiftController.getShiftsByPlanner'
 };

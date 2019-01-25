@@ -583,9 +583,9 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+bootstrap@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.2.tgz#aee2a93472e61c471fc79fb475531dcbc87de326"
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"
@@ -4984,7 +4984,7 @@ sails.io.js-dist@^1.0.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sails.io.js-dist/-/sails.io.js-dist-1.2.1.tgz#37b6cee741c45c9b7fa812108fb061e5334c248f"
 
-sails@^1.0.0:
+sails@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/sails/-/sails-1.0.2.tgz#c18be0fe0b2b305847cedc4d12ec9778c044d1fb"
   dependencies:

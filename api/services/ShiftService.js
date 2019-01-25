@@ -7,7 +7,7 @@ const {map, times, propOr, prop, mapObjIndexed, values, head} = require('ramda')
 const getPlannerShifts = async planner => {
   try {
     const shiftAssignments = await getShiftAssignment(planner.services)
-    return await createShiftsFromAssignments(shiftAssignments, planner.timeLapse)
+    return await createShiftsFromAssignments(shiftAssignments, planner)
   } catch (e) {
     console.log(e)
   }
@@ -20,18 +20,19 @@ const getShiftAssignment = async (services) => {
   })
 }
 
-const createShiftsFromAssignments = async (shiftAssignments, timeLapse) => {
+const createShiftsFromAssignments = async (shiftAssignments, {timeLapse, id: plannerId, nurseType}) => {
   let date = moment(timeLapse.startDate)
   let shifts = []
   while (date.isBefore(timeLapse.endDate)) {
     await Promise.all(map( async shiftAssignment => {
-      const qty = getAssignedShiftsQty(shiftAssignment.assignment, date.isoWeekday())
+      const qty = getAssignedShiftsQty(shiftAssignment.assignment[getNurseType(nurseType)], date.isoWeekday())
       if (qty === 0) return
 
       const createdShifts = await processShiftAssignation({
         date: formatDate(date),
         numberByType: qty,
-        serviceId: shiftAssignment.serviceId
+        serviceId: shiftAssignment.serviceId,
+        plannerId
       })
       shifts = [...shifts, ...createdShifts]
     }, shiftAssignments))
@@ -44,7 +45,7 @@ const getAssignedShiftsQty = (shiftAssignment, dayOfWeek) => {
   return propOr(0, prop(dayOfWeek, daysOfWeek), shiftAssignment)
 }
 
-const processShiftAssignation = async ({date, numberByType, serviceId}) => {
+const processShiftAssignation = async ({date, numberByType, serviceId, plannerId}) => {
   let shifts = []
   const service = await Service.findOne({
     'id': serviceId
@@ -52,7 +53,16 @@ const processShiftAssignation = async ({date, numberByType, serviceId}) => {
   await Promise.all(
     values(
       mapObjIndexed(async (value, key) => {
-        const createdShifts = await createShifts({date, type: {name: key, code: head(key).toUpperCase()}, service, number: value})
+        const createdShifts = await createShifts({
+          type: {
+            name: key,
+            code: head(key).toUpperCase()
+          },
+          number: value,
+          date,
+          service,
+          plannerId
+        })
         shifts = [...shifts, ...createdShifts]
       }, numberByType)
     )
@@ -60,15 +70,24 @@ const processShiftAssignation = async ({date, numberByType, serviceId}) => {
   return shifts
 }
 
-const createShifts = async ({date, type, service, number = 1}) => {
-  return await Promise.all( times( async () => await createShift({date, shiftType: type, service}), number) )
+const createShifts = async ({plannerId, date, type, service, number = 1}) => {
+  return await Promise.all( times( async () => await createShift({plannerId, date, shiftType: type, service}), number) )
 }
 
-const createShift = async ({date, shiftType, service}) => {
-  return await Shift.create({date, shiftType, service}).fetch()
+const createShift = async ({plannerId, date, shiftType, service}) => {
+  return await Shift.create({plannerId, date, shiftType, service}).fetch()
+}
+
+const getShiftsByPlannerId = async plannerId => {
+  return await Shift.find({
+    plannerId
+  })
 }
 
 module.exports = {
+  getShiftsByPlannerId,
   getPlannerShifts,
   createShift
 }
+
+const getNurseType = nurseType => nurseType.name.toLowerCase()

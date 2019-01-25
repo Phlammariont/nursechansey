@@ -21,6 +21,12 @@ module.exports = {
     color: {
       type: 'string',
       required: true
+    },
+    beds: {
+      type: 'number',
+    },
+    bedsByNurse: {
+      type: 'number',
     }
   }
 };

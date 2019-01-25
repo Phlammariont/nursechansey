@@ -69,6 +69,14 @@ module.exports.policies = {
     '*': 'isAuthenticated'
   },
 
+  PeriodController: {
+    '*': 'isAuthenticated'
+  },
+
+  PlanningController: {
+    '*': 'isAuthenticated'
+  },
+
   'PostController': {
     '*': 'isAuthenticated'
   }

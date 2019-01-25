@@ -23,12 +23,12 @@ const { exec, execSync } = require('child_process')
 
 const up = exec(`docker-compose up -d`, () => {
   const logs = exec(`docker-compose logs -f db`)
-  logs.stdout.pipe(process.stdout)
-  logs.stderr.pipe(process.stderr)
+  //logs.stdout.pipe(process.stdout)
+  //logs.stderr.pipe(process.stderr)
 })
 
-up.stdout.pipe(process.stdout)
-up.stderr.pipe(process.stderr)
+//up.stdout.pipe(process.stdout)
+//up.stderr.pipe(process.stderr)
 
 process.on('SIGINT', () => {
   console.log('Stopping... DB')
